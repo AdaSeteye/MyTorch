@@ -1,5 +1,3 @@
-# Do not import any additional 3rd party external libraries as they will not
-# be available to AutoLab and are not needed (or allowed)
 
 import numpy as np
 from resampling import *
@@ -9,7 +7,6 @@ from resampling import *
 class Conv1d_stride1():
     def __init__(self, in_channels, out_channels, kernel_size,
                  weight_init_fn=None, bias_init_fn=None):
-        # Do not modify this method
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.kernel_size = kernel_size
@@ -101,7 +98,6 @@ from resampling import Downsample1d
 class Conv1d():
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding=0,
                  weight_init_fn=None, bias_init_fn=None):
-        # Do not modify the variable names
         self.stride = stride
         self.pad = padding
         self.in_channels = in_channels
