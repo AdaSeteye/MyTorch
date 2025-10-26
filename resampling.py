@@ -14,14 +14,12 @@ class Upsample1d():
             Z (np.array): (batch_size, in_channels, output_width)
         """
 
-        # TODO Create a new array Z with the correct shape
         batch_size, in_channels, input_width = A.shape
 
         output_width = self.upsampling_factor * (input_width - 1) + 1
-        Z = np.zeros((batch_size, in_channels, output_width))  # TODO
+        Z = np.zeros((batch_size, in_channels, output_width))  
         Z[..., ::self.upsampling_factor] = A
 
-        # TODO Fill in the values of Z by upsampling A
 
         return Z
 
@@ -33,9 +31,8 @@ class Upsample1d():
             dLdA (np.array): (batch_size, in_channels, input_width)
         """
 
-        # TODO Slice dLdZ by the upsampling factor to get dLdA
 
-        dLdA = dLdZ[..., ::self.upsampling_factor]  # TODO
+        dLdA = dLdZ[..., ::self.upsampling_factor] 
 
         return dLdA
 
@@ -44,7 +41,7 @@ class Downsample1d():
 
     def __init__(self, downsampling_factor):
         self.downsampling_factor = downsampling_factor
-        self.input_width = None  # TODO Store input width for backward computation
+        self.input_width = None  
 
     def forward(self, A):
         """
@@ -54,11 +51,9 @@ class Downsample1d():
             Z (np.array): (batch_size, in_channels, output_width)
         """
 
-        # TODO Store input width
-        self.input_width = A.shape[2]  # TODO
+        self.input_width = A.shape[2]  
 
-        # TODO Slice A by the downsampling factor to get Z
-        Z = A[..., ::self.downsampling_factor]  # TODO
+        Z = A[..., ::self.downsampling_factor]  
 
         return Z
 
@@ -70,11 +65,9 @@ class Downsample1d():
             dLdA (np.array): (batch_size, in_channels, input_width)
         """
 
-        # TODO Create a new array dLdA with the correct shape
-        dLdA = np.zeros((dLdZ.shape[0], dLdZ.shape[1], self.input_width))  # TODO
+        dLdA = np.zeros((dLdZ.shape[0], dLdZ.shape[1], self.input_width))  
 
-        # TODO Fill in the values of dLdA, assigning dLdZ values at sampled positions
-        dLdA[..., ::self.downsampling_factor] = dLdZ  # TODO
+        dLdA[..., ::self.downsampling_factor] = dLdZ  
 
         return dLdA
 
@@ -92,17 +85,15 @@ class Upsample2d():
             Z (np.array): (batch_size, in_channels, output_height, output_width)
         """
 
-        # TODO Create a new array Z with the correct shape
 
         batch_size, in_channels, input_height, input_width = A.shape
         output_height = self.upsampling_factor * (input_height - 1) + 1
         output_width = self.upsampling_factor * (input_width - 1) + 1
 
-        Z = np.zeros((batch_size, in_channels, output_height, output_width))  # TODO
+        Z = np.zeros((batch_size, in_channels, output_height, output_width))  
 
-        # TODO Fill in the values of Z by upsampling A
         
-        Z[..., ::self.upsampling_factor, ::self.upsampling_factor] = A  # TODO
+        Z[..., ::self.upsampling_factor, ::self.upsampling_factor] = A  
 
         return Z
 
@@ -114,9 +105,8 @@ class Upsample2d():
             dLdA (np.array): (batch_size, in_channels, input_height, input_width)
         """
 
-        # TODO Slice dLdZ by the upsampling factor to get dLdA
 
-        dLdA = dLdZ[..., ::self.upsampling_factor, ::self.upsampling_factor]  # TODO
+        dLdA = dLdZ[..., ::self.upsampling_factor, ::self.upsampling_factor]  
 
         return dLdA
 
@@ -125,8 +115,8 @@ class Downsample2d():
 
     def __init__(self, downsampling_factor):
         self.downsampling_factor = downsampling_factor
-        self.input_height = None  # TODO 
-        self.input_width = None  # TODO 
+        self.input_height = None  
+        self.input_width = None  
 
     def forward(self, A):
         """
@@ -136,11 +126,9 @@ class Downsample2d():
             Z (np.array): (batch_size, in_channels, output_height, output_width)
         """
 
-        # TODO Store input height and width
-        self.input_height, self.input_width = A.shape[2], A.shape[3]  # TODO
+        self.input_height, self.input_width = A.shape[2], A.shape[3]  
 
-        # TODO Slice A by the downsampling factor to get Z
-        Z = A[..., ::self.downsampling_factor, ::self.downsampling_factor]  # TODO
+        Z = A[..., ::self.downsampling_factor, ::self.downsampling_factor]  
 
         return Z
 
@@ -152,10 +140,9 @@ class Downsample2d():
             dLdA (np.array): (batch_size, in_channels, input_height, input_width)
         """
 
-        # TODO Create a new array dLdA with the correct shape
-        dLdA = np.zeros((dLdZ.shape[0], dLdZ.shape[1], self.input_height, self.input_width))  # TODO
+        dLdA = np.zeros((dLdZ.shape[0], dLdZ.shape[1], self.input_height, self.input_width))  
 
-        # TODO Fill in the values of dLdA, assigning dLdZ values at sampled positions
-        dLdA[..., ::self.downsampling_factor, ::self.downsampling_factor] = dLdZ  # TODO
+        dLdA[..., ::self.downsampling_factor, ::self.downsampling_factor] = dLdZ 
 
         return dLdA
+
