@@ -7,7 +7,6 @@ class Linear:
         W shape: (out_features, in_features)
         b shape: (out_features,)  # Changed from (out_features, 1) to match PyTorch
         """
-        # DO NOT MODIFY
         self.W = np.zeros((out_features, in_features))
         self.b = np.zeros(out_features)
 
@@ -16,7 +15,6 @@ class Linear:
         """
         Initialize the weights and biases with the given values.
         """
-        # DO NOT MODIFY
         self.W = W
         self.b = b
 
@@ -27,9 +25,7 @@ class Linear:
         
         Handles arbitrary batch dimensions like PyTorch
         """
-        # TODO: Implement forward pass
         
-        # Store input for backward pass
         self.A = A 
 
         self.input_shape = A.shape
@@ -45,13 +41,11 @@ class Linear:
         :param dLdZ: Gradient of loss wrt output Z (*, out_features)
         :return: Gradient of loss wrt input A (*, in_features)
         """
-        # TODO: Implement backward pass
+        
 
         dLdZ_flattened = dLdZ.reshape(-1, self.output_feature) 
-        # Compute gradients (refer to the equations in the writeup)
         dLdA_flatten = dLdZ_flattened @ self.W
         self.dLdW = dLdZ_flattened.T @ self.A_flatten
         self.dLdb = dLdZ_flattened.sum(axis=0)
         dLdA = dLdA_flatten.reshape(*self.input_shape)         
-        # Return gradient of loss wrt input
         return dLdA
